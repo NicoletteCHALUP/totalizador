@@ -2,12 +2,12 @@
  return a
 }*/
 
-function totalizador(cantidad, precio) {
+export function totalizador(cantidad, precio) {
     return cantidad * precio;
   }
   
   export function calcularImpuesto(precio, impuestoPorcentaje) {
-    return precio * (1 + impuestoPorcentaje / 100);
+    const impuesto = precio * (impuestoPorcentaje / 100);
+    const precioTotal = precio + impuesto;
+    return precioTotal.toFixed(2);
   }
-  
-  export default totalizador;calcularImpuesto;

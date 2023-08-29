@@ -1,6 +1,5 @@
 
-import totalizador, { calcularImpuesto } from "./totalizador";
-
+import { totalizador, calcularImpuesto } from "./totalizador";
 
 const first = document.querySelector("#primer-numero");
 const second = document.querySelector("#segundo-numero");
@@ -9,7 +8,6 @@ const div = document.querySelector("#resultado-div");
 const div2 = document.querySelector("#resultado2-div");
 const div3 = document.querySelector("#resultado3-div");
 const optionsSelect = document.getElementById("options");
-const optionsContainer = document.getElementById("options-container");
 const resultadoDiv = document.getElementById("resultado3-div");
 
 function scrollToOption(optionValue) {
@@ -25,21 +23,21 @@ form.addEventListener("submit", (event) => {
   const secondNumber = Number.parseInt(second.value);
   const selectedOption = optionsSelect.value;
   const selectedOptionText = scrollToOption(selectedOption);
-
   div2.innerHTML = "<p>" + "Estado: " + selectedOptionText + "</p>";
-
-  const precioNetoItem = totalizador(firstNumber, secondNumber);
-  //const impuestoPorcentaje = getImpuestoPorcentaje(selectedOption);
- // const precioTotalItem = calcularImpuesto(precioNetoItem, impuestoPorcentaje);
   
-  div.innerHTML = "<p>Precio Neto: ("+firstNumber+" * "+secondNumber+") = "+precioNetoItem+"</p>";
+  const precioNetoItem = totalizador(firstNumber, secondNumber);
+  const impuestoPorcentaje = getImpuestoPorcentaje(selectedOption);
+  const precioTotalItem = calcularImpuesto(precioNetoItem, impuestoPorcentaje);
+  
+  div.innerHTML = "<p>Precio Neto: (" + firstNumber + " * $" + secondNumber + ") = $" + precioNetoItem + "</p>";
+  div3.innerHTML = "<p>Precio Total : $" + precioTotalItem.toFixed(2) + "</p>";
 });
 
 optionsSelect.addEventListener("change", function () {
   const selectedOption = optionsSelect.value;
   const taxPercentage = getImpuestoPorcentaje(selectedOption);
 
-  resultadoDiv.textContent = "El estado seleccionado tiene un impuesto del: "+taxPercentage;
+  resultadoDiv.textContent = "El estado seleccionado tiene un impuesto del: %" + taxPercentage + "</p>";
 });
 
 function getImpuestoPorcentaje(selectedOption) {
