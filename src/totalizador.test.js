@@ -13,5 +13,7 @@ describe("Totalizador", () => {
   it("Mostrar el precio total con el valor del impuesto según el precio neto y el porcentaje de TX", () => {
     expect(calcularImpuesto(5,6.25)).toEqual("5.31");
   });
-
+  it("Mostrar el precio total con el valor del impuesto según el precio neto y el porcentaje de AL", () => {
+    expect(calcularImpuesto(5,4)).toEqual("5.20");
+  });
 });
