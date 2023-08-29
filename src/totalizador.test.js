@@ -8,10 +8,10 @@ describe("Totalizador", () => {
     expect(totalizador(4,4)).toEqual(16);
   });
   it("Mostrar el precio total del impuesto según el precio neto y el porcentaje de CA", () => {
-    expect(calcularImpuesto(5,8.25)).toEqual(5.41.toFixed(2));
+    expect(calcularImpuesto(5,8.25)).toEqual("5.41");
   });
- 
   it("Mostrar el precio total con el valor del impuesto según el precio neto y el porcentaje de TX", () => {
-    expect(calcularImpuesto(5,6.25)).toEqual(5.31.toFixed(2));
+    expect(calcularImpuesto(5,6.25)).toEqual("5.31");
   });
+
 });
