@@ -23,9 +23,12 @@ describe("Totalizador", () => {
     expect(calcularImpuesto(5,6.65)).toEqual("5.33");
   });
   it("Mostrar el precio total con el Porcentaje de descuento que corresponde a 1000", () => {
-    expect(aplicarDescuento(1001)).toEqual(3);
+    expect(aplicarDescuento(1000)).toEqual(3);
   });
   it("Mostrar el precio total con el Porcentaje de descuento que corresponde a 3000", () => {
-    expect(aplicarDescuento(3001)).toEqual(5);
+    expect(aplicarDescuento(3000)).toEqual(5);
+  });
+  it("Mostrar el precio total con el Porcentaje de descuento que corresponde a 7000", () => {
+    expect(aplicarDescuento(7000)).toEqual(7);
   });
 });
