@@ -14,7 +14,9 @@ export function totalizador(cantidad, precio) {
 
   export function aplicarDescuento(cantidadItems) {
     let descuentoPorcentaje = 0;
-    if (cantidadItems >= 10000) {
+    if (cantidadItems >= 30000) {
+        descuentoPorcentaje = 15;
+      } else if (cantidadItems >= 10000) {
         descuentoPorcentaje = 10;
       }else if (cantidadItems >= 7000) {
         descuentoPorcentaje = 7;
