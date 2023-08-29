@@ -33,19 +33,19 @@ optionsSelect.addEventListener("change", function () {
   let taxPercentage = 0;
 
   switch (selectedOption) {
-    case "CA": // CA
+    case "CA": 
       taxPercentage = 8.25;
       break;
-    case "TX": // TX
+    case "TX": 
       taxPercentage = 6.25;
       break;
-    case "NV": // NV
+    case "NV": 
       taxPercentage = 8.00;
       break;
-    case "UT": // UT
+    case "UT": 
       taxPercentage = 6.65;
       break;
-    case "AL": // AL
+    case "AL": 
       taxPercentage = 4.00;
       break;
   }
