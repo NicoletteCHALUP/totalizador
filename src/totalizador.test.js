@@ -31,4 +31,7 @@ describe("Totalizador", () => {
   it("Mostrar el precio total con el Porcentaje de descuento que corresponde a 7000", () => {
     expect(aplicarDescuento(7000)).toEqual(7);
   });
+  it("Mostrar el precio total con el Porcentaje de descuento que corresponde a 7000", () => {
+    expect(aplicarDescuento(10000)).toEqual(10);
+  });
 });
