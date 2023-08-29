@@ -1,11 +1,13 @@
 
-import totalizador from "./totalizador";
+import totalizador, { calcularImpuesto } from "./totalizador";
+
 
 const first = document.querySelector("#primer-numero");
 const second = document.querySelector("#segundo-numero");
 const form = document.querySelector("#anio-form");
 const div = document.querySelector("#resultado-div");
 const div2 = document.querySelector("#resultado2-div");
+const div3 = document.querySelector("#resultado3-div");
 const optionsSelect = document.getElementById("options");
 const optionsContainer = document.getElementById("options-container");
 const resultadoDiv = document.getElementById("resultado3-div");
@@ -25,30 +27,34 @@ form.addEventListener("submit", (event) => {
   const selectedOptionText = scrollToOption(selectedOption);
 
   div2.innerHTML = "<p>" + "Estado: " + selectedOptionText + "</p>";
-  div.innerHTML = "<p>" + "Cantidad por Item: " + totalizador(firstNumber) + " - Precio por Item: " + totalizador(secondNumber) + "</p>";
+
+  const precioNetoItem = totalizador(firstNumber, secondNumber);
+  //const impuestoPorcentaje = getImpuestoPorcentaje(selectedOption);
+ // const precioTotalItem = calcularImpuesto(precioNetoItem, impuestoPorcentaje);
+  
+  div.innerHTML = "<p>Precio Neto: ("+firstNumber+" * "+secondNumber+") = "+precioNetoItem+"</p>";
 });
 
 optionsSelect.addEventListener("change", function () {
   const selectedOption = optionsSelect.value;
-  let taxPercentage = 0;
+  const taxPercentage = getImpuestoPorcentaje(selectedOption);
 
+  resultadoDiv.textContent = "El estado seleccionado tiene un impuesto del: "+taxPercentage;
+});
+
+function getImpuestoPorcentaje(selectedOption) {
   switch (selectedOption) {
     case "CA": 
-      taxPercentage = 8.25;
-      break;
+      return 8.25;
     case "TX": 
-      taxPercentage = 6.25;
-      break;
+      return 6.25;
     case "NV": 
-      taxPercentage = 8.00;
-      break;
+      return 8.00;
     case "UT": 
-      taxPercentage = 6.65;
-      break;
+      return 6.65;
     case "AL": 
-      taxPercentage = 4.00;
-      break;
+      return 4.00;
+    default:
+      return 0;
   }
-
-  resultadoDiv.textContent = `El estado seleccionado tiene un impuesto del ${taxPercentage}%`;
-});
+}
