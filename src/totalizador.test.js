@@ -1,5 +1,5 @@
 //import { first } from "lodash";
-import { totalizador, calcularImpuesto } from "./totalizador.js";
+import { totalizador, calcularImpuesto, aplicarDescuento } from "./totalizador.js";
 
 
 describe("Totalizador", () => {
@@ -21,5 +21,8 @@ describe("Totalizador", () => {
   });
   it("Mostrar el precio total con el valor del impuesto según el precio neto y el porcentaje de UT", () => {
     expect(calcularImpuesto(5,6.65)).toEqual("5.33");
+  });
+  it("Mostrar el precio total con el Porcentaje de descuento que corresponde a 1000", () => {
+    expect(aplicarDescuento(1000)).toEqual(3);
   });
 });

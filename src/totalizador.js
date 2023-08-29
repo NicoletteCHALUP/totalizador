@@ -11,3 +11,11 @@ export function totalizador(cantidad, precio) {
     const precioTotal = precio + impuesto;
     return precioTotal.toFixed(2);
   }
+
+  export function aplicarDescuento(cantidadItems) {
+    let descuentoPorcentaje = 0;
+    if (cantidadItems >= 1000) {
+        descuentoPorcentaje = 3;
+      }
+    return descuentoPorcentaje;
+  }
