@@ -18,27 +18,34 @@ function scrollToOption(optionValue) {
 form.addEventListener("submit", (event) => {
   event.preventDefault();
 
-  const firstNumber = Number.parseInt(first.value);
-  const secondNumber = Number.parseInt(second.value);
-  const selectedOption = optionsSelect.value;
-  const selectedOptionText = scrollToOption(selectedOption);
-  //div2.innerHTML = "<p>" + "Estado: " + selectedOptionText + "</p>";
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
   
-  const cantidadItems = firstNumber;
-  const precioNetoItem = totalizador(firstNumber, secondNumber);
-  const impuestoPorcentaje = getImpuestoPorcentaje(selectedOption);
-  const descuentoPorcentaje = aplicarDescuento(cantidadItems);
-  const precioConDescuento = precioNetoItem * (1 - descuentoPorcentaje / 100);
-  const precioTotalItem = calcularImpuesto(precioConDescuento, impuestoPorcentaje);
-
-  div.innerHTML = "<p>Precio Neto: (" + firstNumber + " * $" + secondNumber + ") = $" + precioNetoItem + "</p>";
-  div3.innerHTML = "<p>Precio Total : $" + precioTotalItem + "</p>";
-
-  if (descuentoPorcentaje > 0) {
-    div4.innerHTML = "<p>Descuento (" + descuentoPorcentaje + "%): " + descuentoPorcentaje + "</p>";
-  } else {
-    div4.innerHTML = "<p>Descuento : 0%</p>";
-  }
+    const firstNumber = Number.parseInt(first.value);
+    const secondNumber = Number.parseInt(second.value);
+    const selectedOption = optionsSelect.value;
+    const selectedOptionText = scrollToOption(selectedOption);
+    div2.innerHTML = "<p>" + "Estado: " + selectedOptionText + "</p>";
+    
+    const cantidadItems = firstNumber;
+    const precioNetoItem = totalizador(firstNumber, secondNumber);
+    const impuestoPorcentaje = getImpuestoPorcentaje(selectedOption);
+    const descuentoPorcentaje = aplicarDescuento(cantidadItems);
+    const precioConDescuento = precioNetoItem * (1 - descuentoPorcentaje / 100);
+    const precioTotalItem = calcularImpuesto(precioConDescuento, impuestoPorcentaje);
+    const impuestoMonto = (precioNetoItem * (impuestoPorcentaje / 100)).toFixed(2);
+    div.innerHTML = "<p>Precio Neto: (" + firstNumber + " * $" + secondNumber + ") = $" + precioNetoItem + "</p>";
+    div3.innerHTML = "<p>Precio Total (Descuento e Impuesto): $" + precioTotalItem + "</p>";
+  
+    if (descuentoPorcentaje > 0) {
+      div4.innerHTML = "<p>Descuento : " + descuentoPorcentaje + "%</p>";
+    } else {
+      div4.innerHTML = "<p>Descuento(0%) : 0</p>";
+    }
+  
+    const impuestoTexto = "<p> Impuesto Para : "+selectedOptionText+"(%" +impuestoPorcentaje+"): $"+impuestoMonto+"<p>";
+    div2.innerHTML = impuestoTexto;
+  });
  
 });
 
